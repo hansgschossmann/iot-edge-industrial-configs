@@ -1,0 +1,107 @@
+[
+  {
+    "EndpointUrl": "opc.tcp://munich-productionline1-assemblystation:51210",
+    "OpcNodes": [
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=ProductSerialNumber"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=NumberOfManufacturedProducts"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=NumberOfDiscardedProducts"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=OverallRunningTime"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=FaultyTime"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=Status"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=EnergyConsumption"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=Pressure"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=IdealCycleTime"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=ActualCycleTime"
+      }
+    ]
+  },
+  {
+    "EndpointUrl": "opc.tcp://munich-productionline1-teststation:51211",
+    "OpcNodes": [
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=ProductSerialNumber"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=NumberOfManufacturedProducts"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=NumberOfDiscardedProducts"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=OverallRunningTime"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=FaultyTime"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=Status"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=EnergyConsumption"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=Pressure"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=IdealCycleTime"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=ActualCycleTime"
+      }
+    ]
+  },
+  {
+    "EndpointUrl": "opc.tcp://munich-productionline1-packagingstation:51212",
+    "OpcNodes": [
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=ProductSerialNumber"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=NumberOfManufacturedProducts"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=NumberOfDiscardedProducts"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=OverallRunningTime"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=FaultyTime"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=Status"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=EnergyConsumption"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=Pressure"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=IdealCycleTime"
+      },
+      {
+        "Id": "nsu=http://microsoft.com/Opc/CfStation/;s=ActualCycleTime"
+      }
+    ]
+  }
+]

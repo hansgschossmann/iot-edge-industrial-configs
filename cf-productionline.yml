@@ -1,0 +1,54 @@
+version: '3'
+services:
+    munich-productionline1-mes:
+        image: hansgschossmann/azure-iot-connected-factory-cfmes:latest
+        container_name: munich-productionline1-mes
+        hostname: munich-productionline1-mes
+        volumes:
+            - '${_REPO_ROOT}:/appdata'
+        ports:
+            - "50000:50000"
+        command: --lf /d/munich-productionline1-mes.log --ll debug --as opc.tcp://munich-productionline1-assemblystation:51210 --ts opc.tcp://munich-productionline1-teststation:51211 --ps opc.tcp://munich-productionline1-packagingstation:51212 --tp /appdata/trusted --rp /appdata/rejected --ip /appdata/issuer --to
+    munich-productionline1-assemblystation:
+        image: hansgschossmann/azure-iot-connected-factory-cfsta:latest
+        container_name: munich-productionline1-assemblystation
+        depends_on:
+            - munich-productionline1-mes
+        hostname: munich-productionline1-assemblystation
+        volumes:
+            - '${_REPO_ROOT}:/appdata'
+        command: --lf /d/munich-productionline1-assembly.log --pn 51210 --ct 6 --pc 100 --tp /appdata/trusted --rp /appdata/rejected --ip /appdata/issuer --to --aa --ll info
+    munich-productionline1-packagingstation:
+        image: hansgschossmann/azure-iot-connected-factory-cfsta:latest
+        container_name: munich-productionline1-packagingstation
+        depends_on:
+            - munich-productionline1-mes
+        hostname: munich-productionline1-packagingstation
+        volumes:
+            - '${_REPO_ROOT}:/appdata'
+        command: --lf /appdata/munich-productionline1-packaging.log --pn 51212 --ct 6 --pc 100 --tp /appdata/trusted --rp /appdata/rejected --ip /appdata/issuer --to --aa --ll info
+    munich-productionline1-teststation:
+        image: hansgschossmann/azure-iot-connected-factory-cfsta:latest
+        container_name: munich-productionline1-teststation
+        depends_on:
+            - munich-productionline1-mes
+        hostname: munich-productionline1-teststation
+        volumes:
+            - '${_REPO_ROOT}:/appdata'
+        command: --lf /d/munich-productionline1test.log --pn 51211 --ct 6 --pc 100 --tp /appdata/trusted --rp /appdata/rejected --ip /appdata/issuer --to --aa --ll info
+    publisher:
+        image: mcr.microsoft.com/iotedge/opc-publisher:2.5.3
+        container_name: publisher
+        depends_on:
+            - munich-productionline1-assemblystation
+            - munich-productionline1-packagingstation
+            - munich-productionline1-teststation
+        hostname: publisher
+        volumes:
+            - '${_REPO_ROOT}:/appdata'
+        ports:
+            - "62222:62222"
+        environment:
+            - _HUB_CS=${_HUB_CS}
+        command: publisher --di 60 --as=true --vc=true --pf /appdata/publishednodes_cf_productionline.json
+

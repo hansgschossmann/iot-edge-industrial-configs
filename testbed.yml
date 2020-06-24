@@ -4,24 +4,30 @@ services:
         image: hansgschossmann/iot-edge-opc-publisher-testserver:latest
         container_name: testserver
         hostname: testserver
+        expose:
+            - "62541"
         ports:
             - "62541:62541"
+        command: --aa
     testclient:
         image: hansgschossmann/iot-edge-opc-publisher-testclient:latest
         container_name: testclient
         depends_on:
             - publisher
         hostname: testclient
-        command: -a --ic ${_HUB_CS} --id publisher --tu opc.tcp://testserver:62541/Quickstarts/ReferenceServer --pu opc.tcp://publisher:62222/UA/Publisher
+        command: --i1 --aa --ic ${_HUB_CS} --id publisher --tu opc.tcp://testserver:62541/Quickstarts/ReferenceServer --pu opc.tcp://publisher:62222/UA/Publisher
     publisher:
-        image: mcr.microsoft.com/iotedge/opc-publisher:latest
+#        image: mcr.microsoft.com/iotedge/opc-publisher:latest
+        image: publisher:latest
         container_name: publisher
         depends_on:
             - testserver
         hostname: publisher
+        expose:
+            - "62222"
         ports:
             - "62222:62222"
         environment:
             - _HUB_CS=${_HUB_CS}
-        command: publisher --di 60 --as=true
+        command: publisher --di 60 --aa
 
